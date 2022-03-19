@@ -100,7 +100,7 @@ model2.motion("id_pose_5");
 function draggable(model) {
   model.buttonMode = true;
   model.on("pointerdown", (e) => {
-    model.dragging = flase;
+    model.dragging = false;
     model._pointerX = e.data.global.x - model.x;
     model._pointerY = e.data.global.y - model.y;
   });
