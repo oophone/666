@@ -144,7 +144,9 @@ model2.x = (innerWidth - model2.width - model4.width) / 2;
     if (hitAreas.includes("head")) {
       model2.motion("Id_happy");
     }
-    
+    if (hitAreas.includes("tui")) {
+      model2.motion("Id_dress");
+    }
   });
 //model2.motion("id_pose_5");
 
@@ -156,6 +158,11 @@ model2.x = (innerWidth - model2.width - model4.width) / 2;
     if (hitAreas.includes("head")) {
       model4.motion("Id_happy");
     }
+    
+    if (hitAreas.includes("tui")) {
+      model4.motion("Id_dress");
+    }
+	 
   });
 })();
 
