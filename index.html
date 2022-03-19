@@ -52,13 +52,7 @@ const live2d = PIXI.live2d;
   PIXI.loader
 .add("badlogic.jpg")
 .load(setup);
-
-  const models = await Promise.all([
-    live2d.Live2DModel.from(cubism2Model),
-   // live2d.Live2DModel.from(cubism4Model)
-  ]);
-  
-  function setup() {
+function setup() {
 //Create the cat sprite
 let sprite = new PIXI.Sprite(PIXI.loader.resources["badlogic.jpg"].texture);
 sprite.scale.set(10);
@@ -67,6 +61,12 @@ sprite.scale.set(10);
 //Add the cat to the stage
 app.stage.addChild(sprite);
 }
+  const models = await Promise.all([
+    live2d.Live2DModel.from(cubism2Model),
+   // live2d.Live2DModel.from(cubism4Model)
+  ]);
+  
+  
   
 
   models.forEach((model) => {
