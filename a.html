@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+
+</head>
+<style type="text/css">
+#control
+  position: absolute
+  top: 8px
+  left: 24px
+  color: white
+  font-size: 18px
+</style>
+<body>
+
+  <script src="./js/live2dcubismcore.min.js"></script>
+  <script src="./js/live2d.min.js"></script>
+  <script src="./js/pixi.min.js"></script>
+  <script src="./js/index.min.js"></script>
+  
+ 
+ <canvas class="canvas" id=canvas></canvas>
+
+ <img src="badlogic.jpg" class="canvas_bgp">
+   
+<div id="control"></div>
+	
+
+	
+<script type="text/javascript">
+
+	const cubism2Model =
+  "./bust_10505_new_xinshouyindao/bust_10505_new_xinshouyindao.model3.json";
+const cubism4Model =
+  "./bust_10104_kanban/bust_10104.model3.json";
+
+
+
+
+const live2d = PIXI.live2d;
+
+(async function main() {
+  const app = new PIXI.Application({
+    view: document.getElementById("canvas"),
+    autoStart: true,
+    resizeTo: window,
+    backgroundColor: 0x333333
+   
+  });
+  PIXI.loader
+.add("badlogic.jpg")
+.load(setup);
+
+  const models = await Promise.all([
+    live2d.Live2DModel.from(cubism2Model),
+    live2d.Live2DModel.from(cubism4Model)
+  ]);
+  
+  function setup() {
+//Create the cat sprite
+let sprite = new PIXI.Sprite(PIXI.loader.resources["badlogic.jpg"].texture);
+sprite.scale.set(10);
+  sprite.y = -sprite.height / 5;
+  sprite.alpha = 0.9;
+//Add the cat to the stage
+app.stage.addChild(sprite);
+}
+  
+
+  models.forEach((model) => {
+  
+  /*
+    // set up render texture
+
+  const baseRenderTexture = new PIXI.BaseRenderTexture(
+    model.width,
+    model.height
+  );
+  const renderTexture = new PIXI.RenderTexture(baseRenderTexture);
+  
+  
+
+  
+  const sprite = new PIXI.Sprite(renderTexture);
+  sprite.scale.set(3);
+  sprite.y = -sprite.height / 5;
+  sprite.alpha = 0.3;
+
+  // set up filter
+
+  const displacementSprite = PIXI.Sprite.from(displacementMap, {
+    wrapMode: PIXI.WRAP_MODES.REPEAT
+  });
+
+  model.filters = [new PIXI.filters.DisplacementFilter(displacementSprite, 6)];
+
+  app.ticker.add((dt) => {
+    // animate the displacement map
+   // displacementSprite.x += dt * 10;
+
+    // render on the render texture
+    app.renderer.render(model, renderTexture);
+  });
+
+  app.stage.addChild(sprite);
+  app.stage.addChild(displacementSprite);
+  
+  */
+  
+  
+  
+    app.stage.addChild(model);
+
+    const scaleX = (innerWidth * 0.4) / model.width;
+    const scaleY = (innerHeight * 0.8) / model.height;
+
+    // fit the window
+    model.scale.set(Math.min(scaleX, scaleY));
+
+    model.y = innerHeight * 0.1;
+
+    draggable(model);
+    addFrame(model);
+    addHitAreaFrames(model);
+  });
+  
+
+  const model2 = models[0];
+  const model4 = models[1];
+  
+model2.x = (innerWidth - model2.width - model4.width) / 2;
+  model4.x = model2.x + model2.width;
+
+  // handle tapping
+
+
+ model2.on("hit", (hitAreas) => {
+    if (hitAreas.includes("body")) {
+      model2.motion("Id_angry");
+    }
+
+    if (hitAreas.includes("head")) {
+      model2.motion("Id_happy");
+    }
+    
+  });
+//model2.motion("id_pose_5");
+
+ model4.on("hit", (hitAreas) => {
+    if (hitAreas.includes("body")) {
+      model4.motion("Id_angry");
+    }
+
+    if (hitAreas.includes("head")) {
+      model4.motion("Id_happy");
+    }
+  });
+})();
+
+// set up render texture
+
+  
+
+  
+
+
+
+
+
+
+
+function draggable(model) {
+  model.buttonMode = true;
+  model.on("pointerdown", (e) => {
+    model.dragging = false;
+    model._pointerX = e.data.global.x - model.x;
+    model._pointerY = e.data.global.y - model.y;
+  });
+  model.on("pointermove", (e) => {
+    if (model.dragging) {
+      model.position.x = e.data.global.x - model._pointerX;
+      model.position.y = e.data.global.y - model._pointerY;
+    }
+  });
+  model.on("pointerupoutside", () => (model.dragging = false));
+  model.on("pointerup", () => (model.dragging = false));
+}
+
+function addFrame(model) {
+  const foreground = PIXI.Sprite.from(PIXI.Texture.WHITE);
+  foreground.width = model.internalModel.width;
+  foreground.height = model.internalModel.height;
+  foreground.alpha = 0.2;
+
+  model.addChild(foreground);
+
+  checkbox("Model Frames", (checked) => (foreground.visible = checked));
+}
+
+function addHitAreaFrames(model) {
+  const hitAreaFrames = new live2d.HitAreaFrames();
+
+  model.addChild(hitAreaFrames);
+
+  checkbox("Hit Area Frames", (checked) => (hitAreaFrames.visible = checked));
+}
+
+function checkbox(name, onChange) {
+
+  const id = name.replace(/\W/g, "").toLowerCase();
+
+  let checkbox = document.getElementById(id);
+
+  if (!checkbox) {
+    const p = document.createElement("p");
+    p.innerHTML = `<input type="checkbox" id="${id}"> <label for="${id}">${name}</label>`;
+
+    document.getElementById("control").appendChild(p);
+    checkbox = p.firstChild;
+  }
+
+  checkbox.addEventListener("change", () => {
+    onChange(checkbox.checked);
+  });
+
+  onChange(checkbox.checked);
+}
+
+	
+
+	
+</script>
+</body>
+</html>
