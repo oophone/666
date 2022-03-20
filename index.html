@@ -19,24 +19,20 @@
   <script src="./js/live2d.min.js"></script>
   <script src="./js/pixi.min.js"></script>
   <script src="./js/index.min.js"></script>
-  
- 
- <canvas class="canvas" id=canvas></canvas>
-
- <img src="badlogic.jpg" class="canvas_bgp">
+  <div id="control"></div>
+  <canvas class="canvas" id=canvas></canvas>
+  <img src="badlogic.jpg" class="canvas_bgp">
    
-<div id="control"></div>
+
 	
 
 	
 <script type="text/javascript">
 
-	const cubism2Model =
+const cubism2Model =
   "./bust_10505_new_xinshouyindao/bust_10505_new_xinshouyindao.model3.json";
 const cubism4Model =
   "./bust_10104_kanban/bust_10104.model3.json";
-
-
 
 
 const live2d = PIXI.live2d;
@@ -49,16 +45,12 @@ const live2d = PIXI.live2d;
     backgroundColor: 0x333333
    
   });
-  PIXI.loader
+ 
+PIXI.loader
 .add("badlogic.jpg")
 .load(setup);
 
-  const models = await Promise.all([
-    live2d.Live2DModel.from(cubism2Model),
-    live2d.Live2DModel.from(cubism4Model)
-  ]);
-  
-  function setup() {
+function setup() {
 //Create the cat sprite
 let sprite = new PIXI.Sprite(PIXI.loader.resources["badlogic.jpg"].texture);
 sprite.scale.set(10);
@@ -67,8 +59,12 @@ sprite.scale.set(10);
 //Add the cat to the stage
 app.stage.addChild(sprite);
 }
-  
-
+	
+ 
+const models = await Promise.all([
+    live2d.Live2DModel.from(cubism2Model),
+    live2d.Live2DModel.from(cubism4Model)
+  ]);
   models.forEach((model) => {
   
   /*
