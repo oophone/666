@@ -39,6 +39,8 @@
     height: 50px;
     width: 50px;
     transform: rotate(-45deg);
+animation:mymove 5s infinite;
+	-webkit-animation:mymove 5s infinite;
   }
   .heart::after {
     background-color: pink;
@@ -61,6 +63,12 @@
     left: 0px;
     content: '';
   }
+@keyframes mymove
+{
+	from {top:0px;}
+	to {top:200px;}
+}
+
 </style>
 
 <body>
