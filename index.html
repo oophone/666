@@ -13,40 +13,20 @@
   color: white
   font-size: 18px
 
-  .heart {
+.center {
     position: absolute;
     margin: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: pink;
-    height: 50px;
-    width: 50px;
-    transform: rotate(-45deg);
-  }
-  .heart::after {
-    background-color: pink;
-    content: "";
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
     border-radius: 50%;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 0px;
-    left: 25px;
+    box-shadow: 25px 10px 0px 0px blue;
   }
-  .heart::before {
-    content: ;
-    background-color: pink;
-    border-radius: 50%;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: -25px;
-    left: 0px;
-    content: '';
-  }
-
+ 
 
 </style>
 
@@ -57,7 +37,7 @@
   <script src="./js/pixi.min.js"></script>
   <script src="./js/index.min.js"></script>
   <div id="control"></div>
-<div class="heart"></div>
+<div class="center"></div>
   <canvas class="canvas" id=canvas></canvas>
   <img src="badlogic.jpg" class="canvas_bgp">
    
