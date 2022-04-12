@@ -14,61 +14,23 @@
   font-size: 18px
  </style>
 <style type="text/css">
-    body{
-            background-color: black;
-        }
-        .losts{
-            position:absolute;
-            margin:300px 300px;
-            width: 300px;
-            height: 300px;
-            /* background-color: blue; */
-            transform: rotate(45deg);
-        }
-        .losts1{
-            position: absolute;
-            top: 0px;
-            left: 0;
-            opacity: 0.7;
-            background-color: pink;
-            width: 300px;
-            height: 300px;
-            border-radius: 0px 300px 0px 300px;
-            transform-origin: 300px 300px;
-            transition: all 0.2;
-        }
-        .losts:hover .snow1{
-            transform: rotate(0deg);
+    body {
+        position: absolute;
+        background-color: #2f346f;
+        background-image: url(images/snow1_1.png), url(images/snow1_2.png), url(images/snow1_3.png);
+        animation: snow 40s linear infinite;
+    }
 
+    @keyframes snow {
+        0% {
+            background-position: 0px 0, 0px 0px, 0px 0px;
         }
-        .losts:hover .snow2{
-            transform: rotate(30deg);
 
+        100% {
+            background-position: -200px 1500px, 800px 950px, 950px 1800px;
         }
-        .losts:hover .snow3{
-            transform: rotate(60deg);
+    }
 
-        }
-        .losts:hover .snow4{
-            transform: rotate(90deg);
-
-        }
-        .losts:hover .snow5{
-            transform: rotate(-90deg);
-
-        }
-        .losts:hover .snow6{
-            transform: rotate(-30deg);
-
-        }
-        .losts:hover .snow7{
-            transform: rotate(-60deg);
-
-        }
-        .losts:hover .snow7{
-            transform: rotate(-90deg);
-
-        }
 </style>
 <style type="text/css">
   .heart {
