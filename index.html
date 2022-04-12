@@ -42,6 +42,47 @@
     transform-origin: 0% 100%;
     
 }
+	.pink {
+    top: 30px;
+    left: 395px;
+    background: #ff5a99;
+    animation-delay: 5s;
+    -webkit-animation-delay: 5s;
+    -moz-animation-delay: 5s;
+}
+.pink:after {
+    border-color: transparent transparent transparent #ff5a99;
+    animation-delay: 5s;
+    -webkit-animation-delay: 5s;
+    -moz-animation-delay: 5s;
+}
+.blue {
+    top: 35px;
+    left: 432px;
+    background: cyan;
+    animation-delay: 7s;
+    -webkit-animation-delay: 7s;
+    -moz-animation-delay: 7s;
+}
+.blue:after {
+    border-color: transpareanimation-delay: 12s;
+    -webkit-animation-delay: 7s;
+    -moz-animation-delay: 7s;
+    animation-delay: 7s;
+}
+.yellow {
+    top: 50px;
+    left: 600px;
+    background: #ffcd5c;
+    animation-delay: 5.8s;
+}
+.yellow:after {
+    border-color: transparent transparent transparent #ffcd5c;
+    animation-delay: 5.8s;
+}
+	
+	
+	
     
  @keyframes star-ani {
     0% {
@@ -126,7 +167,13 @@ left:500px;
   <script src="./js/pixi.min.js"></script>
   <script src="./js/index.min.js"></script>
   <div id="control"></div>
-<div class="star"></div>
+<div class="stars">
+        <div class="star"></div>
+        <div class="star pink"></div>
+        <div class="star blue"></div>
+        <div class="star yellow"></div>
+    </div>
+
 <div class="heart"></div>
   <canvas class="canvas" id=canvas></canvas>
 
