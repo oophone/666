@@ -12,17 +12,12 @@
   left: 24px
   color: white
   font-size: 18px
-
-
  </style>
 <style type="text/css">
-
-
 .center {
     position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
+    top: 8px
+    left: 50px
     bottom: 0;
     left: 0;
     width: 100px;
@@ -31,10 +26,41 @@
     border-radius: 50%;
     box-shadow: 25px 10px 0px 0px blue;
   }
-
-
-
-
+</style>
+<style type="text/css">
+  .heart {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: pink;
+    height: 50px;
+    width: 50px;
+    transform: rotate(-45deg);
+  }
+  .heart::after {
+    background-color: pink;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    left: 25px;
+  }
+  .heart::before {
+    content: ;
+    background-color: pink;
+    border-radius: 50%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 0px;
+    content: '';
+  }
 </style>
 
 <body>
@@ -45,6 +71,7 @@
   <script src="./js/index.min.js"></script>
   <div id="control"></div>
 <div class="center"></div>
+<div class="heart"></div>
   <canvas class="canvas" id=canvas></canvas>
   <img src="badlogic.jpg" class="canvas_bgp">
    
